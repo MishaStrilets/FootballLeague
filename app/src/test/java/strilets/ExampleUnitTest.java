@@ -1,4 +1,4 @@
-package strilets.footballleague;
+package strilets;
 
 import org.junit.Test;
 

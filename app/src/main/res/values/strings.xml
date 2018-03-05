@@ -4,5 +4,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="title">Football league</string>
+    <string name="title_activity_write_result">WriteResultActivity</string>
+
     <string name="action_settings">Settings</string>
 </resources>
