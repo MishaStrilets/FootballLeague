@@ -9,11 +9,22 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class WriteResultActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    final String LEAGUE_EXIST = "The league already exist.";
+    ListView listView;
+    Button btnSave;
     DBManager db;
+    MatchAdapter matchAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +43,20 @@ public class WriteResultActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         db = new DBManager(this);
+
+        //TODO show matches
+        ArrayList<Match> matchesList = db.getAllMatches();
+        matchAdapter = new MatchAdapter(this, matchesList);
+        listView = (ListView) findViewById(android.R.id.list);
+        listView.setAdapter(matchAdapter);
+
+        btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveResult();
+            }
+        });
     }
 
     @Override
@@ -52,11 +77,10 @@ public class WriteResultActivity extends AppCompatActivity
             if (db.checkMatches()) {
                 Intent addTeams = new Intent(this, AddTeamsActivity.class);
                 startActivity(addTeams);
-            } else {
-                Intent main = new Intent(this, MainActivity.class);
-                startActivity(main);
             }
-        } else if (id == R.id.nav_show) {
+            else
+                Toast.makeText(this, LEAGUE_EXIST, Toast.LENGTH_LONG).show();
+        }  else if (id == R.id.nav_show) {
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
         } else if (id == R.id.nav_delete) {
@@ -68,5 +92,9 @@ public class WriteResultActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void saveResult(){
+        //TODO save result matches in db
     }
 }

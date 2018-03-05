@@ -5,19 +5,28 @@ public class Match {
 	Match() {
 	}
 
-	public Match(String nameTeam1, String nameTeam2, int goalTeam1, int goalTeam2, int match) {
+	public Match(String nameTeam1, String nameTeam2, int goalTeam1, int goalTeam2, int number) {
 		this.nameTeam1 = nameTeam1;
 		this.nameTeam2 = nameTeam2;
 		this.goalTeam1 = goalTeam1;
 		this.goalTeam2 = goalTeam2;
-		this.match = match;
+		this.number = number;
 	}
 
+	private int id;
 	private String nameTeam1;
 	private String nameTeam2;
 	private int goalTeam1;
 	private int goalTeam2;
-	private int match;
+	private int number;
+
+	public void setId(int number) {
+		this.id = id;
+	}
+
+	public int getId() {
+		return this.id;
+	}
 
 	public void setNameTeam1(String nameTeam1) {
 		this.nameTeam1 = nameTeam1;
@@ -51,12 +60,12 @@ public class Match {
 		return this.goalTeam2;
 	}
 
-	public void setMatch(int match) {
-		this.match = match;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
-	public int getMatch() {
-		return this.match;
+	public int getNumber() {
+		return this.number;
 	}
 
 }

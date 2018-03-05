@@ -45,7 +45,7 @@ public class DBManager extends SQLiteOpenHelper {
         for(int i = 0; i < matches.size(); i++) {
             Match match = matches.get(i);
             ContentValues contentValue = new ContentValues();
-            contentValue.put(COLUMN_NUMBER, match.getMatch());
+            contentValue.put(COLUMN_NUMBER, match.getNumber());
             contentValue.put(COLUMN_NAME_TEAM1, match.getNameTeam1());
             contentValue.put(COLUMN_NAME_TEAM2, match.getNameTeam2());
             contentValue.put(COLUMN_GOAL_TEAM1, match.getGoalTeam1());
@@ -61,6 +61,28 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + TABLE_MATCHES);
         onCreate(db);
         db.close();
+    }
+
+    public ArrayList<Match> getAllMatches() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Match> matchesList = new ArrayList<Match>();
+        String selectQuery = "SELECT  * FROM " + TABLE_MATCHES;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Match match = new Match();
+                match.setId(cursor.getInt(0));
+                match.setNumber(cursor.getInt(1));
+                match.setNameTeam1(cursor.getString(2));
+                match.setNameTeam2(cursor.getString(3));
+                match.setGoalTeam1(cursor.getInt(4));
+                match.setGoalTeam2(cursor.getInt(5));
+                matchesList.add(match);
+            } while (cursor.moveToNext());
+        }
+
+        return matchesList;
     }
 
     public boolean checkMatches() {

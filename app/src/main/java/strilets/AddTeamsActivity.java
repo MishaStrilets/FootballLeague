@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,9 +21,10 @@ import java.util.Collections;
 public class AddTeamsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    final String INVALID_INPUT = "Invalid input.";
+    final String NO_LEAGUE = "No league.";
     Button btnAdd;
     EditText editTeams;
-    TextView textMessage, textTitle;
     DBManager db;
 
     @Override
@@ -45,12 +47,12 @@ public class AddTeamsActivity extends AppCompatActivity
         editTeams = (EditText) findViewById(R.id.editTeams);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    addTeams(editTeams.getText().toString().split("; "));
-                }
-            });
-        }
+            @Override
+            public void onClick(View view) {
+                addTeams(editTeams.getText().toString().split("; "));
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {
@@ -67,7 +69,12 @@ public class AddTeamsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_write) {
-
+            if (!db.checkMatches()) {
+                Intent saveResult = new Intent(this, WriteResultActivity.class);
+                startActivity(saveResult);
+            }
+            else
+                Toast.makeText(this, NO_LEAGUE, Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_show) {
             Intent main = new Intent(this, MainActivity.class);
             startActivity(main);
@@ -84,18 +91,16 @@ public class AddTeamsActivity extends AppCompatActivity
 
     public void addTeams(String[] teams ) {
         int countMatches = 0, match = 1;
-        textMessage = (TextView) findViewById(R.id.textMessage);
-        textMessage.setText("");
 
         if (teams.length == 0 || teams.length == 1) {
-            textMessage.setText("INVALID INPUT");
+            Toast.makeText(this, INVALID_INPUT, Toast.LENGTH_LONG).show();
             return;
         }
 
         for (int i = 0; i < teams.length - 1; i++) {
             for (int j = i + 1; j < teams.length; j++) {
                 if (teams[i].equals(teams[j])) {
-                    textMessage.setText("INVALID INPUT");
+                    Toast.makeText(this, INVALID_INPUT, Toast.LENGTH_LONG).show();
                     return;
                 }
             }
@@ -104,23 +109,23 @@ public class AddTeamsActivity extends AppCompatActivity
         for (int i = 1; i < teams.length; i++)
             countMatches += i;
 
-        ArrayList<Match> matches = new ArrayList<Match>(countMatches);
+        ArrayList<Match> matchesList = new ArrayList<Match>(countMatches);
 
         for (int i = 0; i < teams.length - 1; i++) {
             for (int j = i + 1; j < teams.length; j++) {
                 Match m = new Match(teams[i], teams[j], -1, -1, match);
-                matches.add(m);
+                matchesList.add(m);
             }
         }
 
-        Collections.shuffle(matches);
+        Collections.shuffle(matchesList);
 
-        for (int y = 0; y < matches.size(); y++) {
-            matches.get(y).setMatch(match);
+        for (int y = 0; y < matchesList.size(); y++) {
+            matchesList.get(y).setNumber(match);
             match++;
         }
 
-        db.addMatches(matches);
+        db.addMatches(matchesList);
 
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);
