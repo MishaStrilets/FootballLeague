@@ -44,11 +44,10 @@ public class WriteResultActivity extends AppCompatActivity
 
         db = new DBManager(this);
 
-        //TODO show matches
         ArrayList<Match> matchesList = db.getAllMatches();
-        matchAdapter = new MatchAdapter(this, matchesList);
-        listView = (ListView) findViewById(android.R.id.list);
-        listView.setAdapter(matchAdapter);
+        MatchAdapter matchAdapter = new MatchAdapter(this, matchesList);
+        ListView itemsListView  = (ListView) findViewById(R.id.listMatches);
+        itemsListView.setAdapter(matchAdapter);
 
         btnSave = (Button) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {

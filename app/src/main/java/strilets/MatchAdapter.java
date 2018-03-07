@@ -1,38 +1,31 @@
 package strilets;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MatchAdapter extends BaseAdapter {
-    Context ctx;
-    LayoutInflater lInflater;
-    ArrayList<Match> objects;
+    private Context context;
+    private ArrayList<Match> matchesList;
 
-    MatchAdapter(Context context, ArrayList<Match> matchesList) {
-        ctx = context;
-        objects = matchesList;
-        lInflater = (LayoutInflater) ctx
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public MatchAdapter(Context context, ArrayList<Match> matchesList) {
+        this.context = context;
+        this.matchesList = matchesList;
     }
 
     @Override
     public int getCount() {
-        return objects.size();
+        return matchesList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return objects.get(position);
+        return matchesList.get(position);
     }
 
     @Override
@@ -42,23 +35,47 @@ public class MatchAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            view = lInflater.inflate(R.layout.item, parent, false);
+        ViewHolder viewHolder;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_match, parent, false);
+            viewHolder = new ViewHolder(convertView);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Match m = getMatch(position);
+        Match currentMatch = (Match) getItem(position);
+        viewHolder.Number.setText(String.valueOf(currentMatch.getNumber()));
+        viewHolder.NameTeam1.setText(currentMatch.getNameTeam1());
+        viewHolder.NameTeam2.setText(currentMatch.getNameTeam2());
 
-        ((TextView) view.findViewById(R.id.textNumber)).setText(m.getNumber());
-        ((TextView) view.findViewById(R.id.textNameTeam1)).setText(m.getNameTeam1());
-        ((TextView) view.findViewById(R.id.textNameTeam2)).setText(m.getNameTeam2());
-        ((EditText) view.findViewById(R.id.textGoalTeam1)).setText(m.getGoalTeam1());
-        ((EditText) view.findViewById(R.id.textGoalTeam2)).setText(m.getGoalTeam2());
+        if(currentMatch.getGoalTeam1() == -1)
+            viewHolder.GoalTeam1.setText(" ");
+        else
+            viewHolder.GoalTeam1.setText(String.valueOf(currentMatch.getGoalTeam1()));
 
-        return view;
+        if(currentMatch.getGoalTeam2() == -1)
+            viewHolder.GoalTeam2.setText(" ");
+        else
+            viewHolder.GoalTeam2.setText(String.valueOf(currentMatch.getGoalTeam2()));
+
+        return convertView;
     }
 
-    Match getMatch(int position) {
-        return ((Match) getItem(position));
+    private class ViewHolder {
+        TextView Number;
+        TextView NameTeam1;
+        TextView NameTeam2;
+        EditText GoalTeam1;
+        EditText GoalTeam2;
+
+        public ViewHolder(View view) {
+            Number = (TextView)view.findViewById(R.id.textNumber);
+            NameTeam1 = (TextView)view.findViewById(R.id.textNameTeam1);
+            NameTeam2 = (TextView)view.findViewById(R.id.textNameTeam2);
+            GoalTeam1 = (EditText)view.findViewById(R.id.textGoalTeam1);
+            GoalTeam2 = (EditText)view.findViewById(R.id.textGoalTeam2);
+        }
     }
 }
