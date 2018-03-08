@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -90,7 +89,8 @@ public class AddTeamsActivity extends AppCompatActivity
     }
 
     public void addTeams(String[] teams ) {
-        int countMatches = 0, match = 1;
+        int countMatches = 0;
+        int numberMatches = 1;
 
         if (teams.length == 0 || teams.length == 1) {
             Toast.makeText(this, INVALID_INPUT, Toast.LENGTH_LONG).show();
@@ -113,19 +113,18 @@ public class AddTeamsActivity extends AppCompatActivity
 
         for (int i = 0; i < teams.length - 1; i++) {
             for (int j = i + 1; j < teams.length; j++) {
-                Match m = new Match(teams[i], teams[j], -1, -1, match);
+                Match m = new Match(teams[i], teams[j],  "", "", numberMatches);
                 matchesList.add(m);
             }
         }
 
         Collections.shuffle(matchesList);
 
-        for (int y = 0; y < matchesList.size(); y++) {
-            matchesList.get(y).setNumber(match);
-            match++;
+        for(int i = 0; i < matchesList.size(); i++) {
+            matchesList.get(i).setNumberMatch(numberMatches);
+            numberMatches++;
+            db.addMatch(matchesList.get(i));
         }
-
-        db.addMatches(matchesList);
 
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);

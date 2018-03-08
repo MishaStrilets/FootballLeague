@@ -15,18 +15,17 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".AddTeamsActivity"
-            android:label="@string/title"
+            android:label="@string/title_activity_add_teams"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WriteResultActivity"
-            android:label="@string/title"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_write_result"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

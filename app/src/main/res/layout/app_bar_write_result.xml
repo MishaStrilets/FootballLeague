@@ -20,17 +20,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Save result" />
-
     <ListView
         android:id="@+id/listMatches"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp" />
+        android:layout_marginTop="60dp" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -16,13 +16,13 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WriteResultActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     final String LEAGUE_EXIST = "The league already exist.";
     ListView listView;
-    Button btnSave;
     DBManager db;
     MatchAdapter matchAdapter;
 
@@ -44,18 +44,10 @@ public class WriteResultActivity extends AppCompatActivity
 
         db = new DBManager(this);
 
-        ArrayList<Match> matchesList = db.getAllMatches();
-        MatchAdapter matchAdapter = new MatchAdapter(this, matchesList);
-        ListView itemsListView  = (ListView) findViewById(R.id.listMatches);
-        itemsListView.setAdapter(matchAdapter);
-
-        btnSave = (Button) findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveResult();
-            }
-        });
+        List<Match> matchesList = db.getAllMatches();
+        matchAdapter = new MatchAdapter(this, matchesList);
+        listView  = (ListView) findViewById(R.id.listMatches);
+        listView.setAdapter(matchAdapter);
     }
 
     @Override
@@ -93,7 +85,4 @@ public class WriteResultActivity extends AppCompatActivity
         return true;
     }
 
-    public void saveResult(){
-        //TODO save result matches in db
-    }
 }

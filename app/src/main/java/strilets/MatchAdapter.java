@@ -5,15 +5,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import java.util.ArrayList;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class MatchAdapter extends BaseAdapter {
-    private Context context;
-    private ArrayList<Match> matchesList;
 
-    public MatchAdapter(Context context, ArrayList<Match> matchesList) {
+    private Context context;
+    private List<Match> matchesList;
+    DBManager db;
+    final String MATCH_SAVE = "Result match save";
+    final String INVALID_INPUT = "Invalid input";
+
+    public MatchAdapter(Context context, List<Match> matchesList) {
         this.context = context;
         this.matchesList = matchesList;
     }
@@ -34,8 +41,8 @@ public class MatchAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final ViewHolder viewHolder;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_match, parent, false);
@@ -45,37 +52,51 @@ public class MatchAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        Match currentMatch = (Match) getItem(position);
-        viewHolder.Number.setText(String.valueOf(currentMatch.getNumber()));
-        viewHolder.NameTeam1.setText(currentMatch.getNameTeam1());
-        viewHolder.NameTeam2.setText(currentMatch.getNameTeam2());
+        final Match currentMatch = (Match) getItem(position);
+        viewHolder.textNumberMatch.setText(String.valueOf(currentMatch.getNumberMatch()));
+        viewHolder.textNameTeam1.setText(currentMatch.getNameTeam1());
+        viewHolder.textNameTeam2.setText(currentMatch.getNameTeam2());
+        viewHolder.editGoalTeam1.setText(String.valueOf(currentMatch.getGoalTeam1()));
+        viewHolder.editGoalTeam2.setText(String.valueOf(currentMatch.getGoalTeam2()));
+        viewHolder.btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(viewHolder.editGoalTeam1.getText().toString().matches("0|[1-9]+") && viewHolder.editGoalTeam2.getText().toString().matches("0|[1-9]+")) {
+                    db = new DBManager(context);
 
-        if(currentMatch.getGoalTeam1() == -1)
-            viewHolder.GoalTeam1.setText(" ");
-        else
-            viewHolder.GoalTeam1.setText(String.valueOf(currentMatch.getGoalTeam1()));
+                    Match editMatch = new Match();
+                    editMatch.setNumberMatch(currentMatch.getNumberMatch());
+                    editMatch.setGoalTeam1(viewHolder.editGoalTeam1.getText().toString());
+                    editMatch.setGoalTeam2(viewHolder.editGoalTeam2.getText().toString());
 
-        if(currentMatch.getGoalTeam2() == -1)
-            viewHolder.GoalTeam2.setText(" ");
-        else
-            viewHolder.GoalTeam2.setText(String.valueOf(currentMatch.getGoalTeam2()));
+                    db.updateTask(editMatch);
+                    db.close();
+
+                    Toast.makeText(context, MATCH_SAVE, Toast.LENGTH_LONG).show();
+                }
+                else
+                    Toast.makeText(context, INVALID_INPUT, Toast.LENGTH_LONG).show();
+            }
+        });
 
         return convertView;
     }
 
     private class ViewHolder {
-        TextView Number;
-        TextView NameTeam1;
-        TextView NameTeam2;
-        EditText GoalTeam1;
-        EditText GoalTeam2;
+        TextView textNumberMatch;
+        TextView textNameTeam1;
+        TextView textNameTeam2;
+        EditText editGoalTeam1;
+        EditText editGoalTeam2;
+        Button btnSave;
 
         public ViewHolder(View view) {
-            Number = (TextView)view.findViewById(R.id.textNumber);
-            NameTeam1 = (TextView)view.findViewById(R.id.textNameTeam1);
-            NameTeam2 = (TextView)view.findViewById(R.id.textNameTeam2);
-            GoalTeam1 = (EditText)view.findViewById(R.id.textGoalTeam1);
-            GoalTeam2 = (EditText)view.findViewById(R.id.textGoalTeam2);
+            textNumberMatch = (TextView)view.findViewById(R.id.textNumberMatch);
+            textNameTeam1 = (TextView)view.findViewById(R.id.textNameTeam1);
+            textNameTeam2 = (TextView)view.findViewById(R.id.textNameTeam2);
+            editGoalTeam1 = (EditText)view.findViewById(R.id.editGoalTeam1);
+            editGoalTeam2 = (EditText)view.findViewById(R.id.editGoalTeam2);
+            btnSave = (Button)view.findViewById(R.id.btnSave);
         }
     }
 }
