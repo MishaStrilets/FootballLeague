@@ -6,15 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_add"
+            android:textColor="@color/colorBlack"
             android:title="Add teams" />
         <item
             android:id="@+id/nav_write"
+            android:textColor="@color/colorBlack"
             android:title="Write results" />
         <item
             android:id="@+id/nav_show"
+            android:textColor="@color/colorBlack"
             android:title="Show table" />
         <item
             android:id="@+id/nav_delete"
+            android:textColor="@color/colorBlack"
             android:title="Delete league" />
     </group>
 
