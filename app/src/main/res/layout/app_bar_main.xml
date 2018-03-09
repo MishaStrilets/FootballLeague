@@ -21,13 +21,79 @@
     </android.support.design.widget.AppBarLayout>
 
     <TextView
-        android:text="table"
-        android:id="@+id/textTable"
-        android:textColor="#000000"
+        android:text="№"
+        android:id="@+id/textTitlePosition"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="Team"
+        android:id="@+id/textTitleNameTeam"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="45dp"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="G"
+        android:id="@+id/textTitleCountGames"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="195dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="S"
+        android:id="@+id/textTitleScoredBalls"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="230dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="M"
+        android:id="@+id/textTitleMissedBalls"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="265dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="D"
+        android:id="@+id/textTitleDifferenceBalls"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="300dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="P"
+        android:id="@+id/textTitlePoints"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="335dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/listTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20px"
-        android:layout_marginTop="70dp" />
+        android:layout_marginTop="110dp" />
 
 </android.support.design.widget.CoordinatorLayout>

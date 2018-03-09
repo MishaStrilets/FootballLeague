@@ -81,15 +81,18 @@ public class DBManager extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+        cursor.close();
+        db.close();
         return matchesList;
     }
 
-    public int updateTask(Match match) {
+    public void updateTask(Match match) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_GOAL_TEAM1, match.getGoalTeam1());
         values.put(COLUMN_GOAL_TEAM2, match.getGoalTeam2());
-        return db.update(TABLE_MATCHES, values, COLUMN_NUMBER_MATCH + " = ?", new String[] { String.valueOf(match.getNumberMatch()) });
+        db.update(TABLE_MATCHES, values, COLUMN_NUMBER_MATCH + " = ?", new String[] { String.valueOf(match.getNumberMatch()) });
+        db.close();
     }
 
     public boolean checkMatches() {

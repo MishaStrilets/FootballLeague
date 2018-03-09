@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textPosition"
+        android:layout_marginLeft="10dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textNameTeam"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_marginLeft="45dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textCountGames"
+        android:layout_marginLeft="195dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textScoredBalls"
+        android:layout_marginLeft="230dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textMissedBalls"
+        android:layout_marginLeft="265dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textDifferenceBalls"
+        android:layout_marginLeft="300dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textPoints"
+        android:layout_marginLeft="335dp"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

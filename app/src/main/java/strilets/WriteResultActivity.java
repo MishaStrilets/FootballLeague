@@ -9,20 +9,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WriteResultActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     final String LEAGUE_EXIST = "The league already exist.";
-    ListView listView;
+    ListView listMatch;
     DBManager db;
     MatchAdapter matchAdapter;
 
@@ -46,8 +42,8 @@ public class WriteResultActivity extends AppCompatActivity
 
         List<Match> matchesList = db.getAllMatches();
         matchAdapter = new MatchAdapter(this, matchesList);
-        listView  = (ListView) findViewById(R.id.listMatches);
-        listView.setAdapter(matchAdapter);
+        listMatch  = (ListView) findViewById(R.id.listMatches);
+        listMatch.setAdapter(matchAdapter);
     }
 
     @Override

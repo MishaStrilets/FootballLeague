@@ -70,7 +70,6 @@ public class MatchAdapter extends BaseAdapter {
                     editMatch.setGoalTeam2(viewHolder.editGoalTeam2.getText().toString());
 
                     db.updateTask(editMatch);
-                    db.close();
 
                     Toast.makeText(context, MATCH_SAVE, Toast.LENGTH_LONG).show();
                 }
