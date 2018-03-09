@@ -5,6 +5,7 @@
 
     <TextView
         android:id="@+id/textPosition"
+        android:textColor="@color/colorBlack"
         android:layout_marginLeft="10dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
@@ -13,7 +14,8 @@
 
     <TextView
         android:id="@+id/textNameTeam"
-        android:layout_width="140dp"
+        android:textColor="@color/colorBlack"
+        android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:layout_marginLeft="45dp"
@@ -21,35 +23,40 @@
 
     <TextView
         android:id="@+id/textCountGames"
-        android:layout_marginLeft="195dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="190dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textScoredBalls"
-        android:layout_marginLeft="230dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="225dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textMissedBalls"
-        android:layout_marginLeft="265dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="260dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textDifferenceBalls"
-        android:layout_marginLeft="300dp"
-        android:layout_width="25dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="295dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textPoints"
-        android:layout_marginLeft="335dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="340dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"

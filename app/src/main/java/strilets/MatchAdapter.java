@@ -61,7 +61,7 @@ public class MatchAdapter extends BaseAdapter {
         viewHolder.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(viewHolder.editGoalTeam1.getText().toString().matches("0|[1-9]+") && viewHolder.editGoalTeam2.getText().toString().matches("0|[1-9]+")) {
+                if(viewHolder.editGoalTeam1.getText().toString().matches("|0|[1-9]+") && viewHolder.editGoalTeam2.getText().toString().matches("|0|[1-9]+")) {
                     db = new DBManager(context);
 
                     Match editMatch = new Match();

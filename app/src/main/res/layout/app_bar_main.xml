@@ -23,6 +23,7 @@
     <TextView
         android:text="№"
         android:id="@+id/textTitlePosition"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="10dp"
         android:layout_width="25dp"
@@ -33,9 +34,10 @@
     <TextView
         android:text="Team"
         android:id="@+id/textTitleNameTeam"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="45dp"
-        android:layout_width="140dp"
+        android:layout_width="135dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textStyle="bold" />
@@ -43,8 +45,9 @@
     <TextView
         android:text="G"
         android:id="@+id/textTitleCountGames"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="195dp"
+        android:layout_marginLeft="190dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
@@ -53,8 +56,9 @@
     <TextView
         android:text="S"
         android:id="@+id/textTitleScoredBalls"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="230dp"
+        android:layout_marginLeft="225dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
@@ -63,8 +67,9 @@
     <TextView
         android:text="M"
         android:id="@+id/textTitleMissedBalls"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="265dp"
+        android:layout_marginLeft="260dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
@@ -73,9 +78,10 @@
     <TextView
         android:text="D"
         android:id="@+id/textTitleDifferenceBalls"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="300dp"
-        android:layout_width="25dp"
+        android:layout_marginLeft="295dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textStyle="bold"/>
@@ -83,8 +89,9 @@
     <TextView
         android:text="P"
         android:id="@+id/textTitlePoints"
+        android:textColor="@color/colorBlack"
         android:layout_marginTop="70dp"
-        android:layout_marginLeft="335dp"
+        android:layout_marginLeft="340dp"
         android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
