@@ -43,7 +43,7 @@ public class DBManager extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void addMatch(Match match) {
+    public void addMatch(Match match) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValue = new ContentValues();
         contentValue.put(COLUMN_NAME_TEAM1, match.getNameTeam1());

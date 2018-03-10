@@ -17,8 +17,8 @@ public class MatchAdapter extends BaseAdapter {
     private Context context;
     private List<Match> matchesList;
     DBManager db;
-    final String MATCH_SAVE = "Result match save";
-    final String INVALID_INPUT = "Invalid input";
+    final String MATCH_SAVE = "Result match save.";
+    final String INVALID_INPUT = "Invalid input.";
 
     public MatchAdapter(Context context, List<Match> matchesList) {
         this.context = context;
@@ -53,11 +53,11 @@ public class MatchAdapter extends BaseAdapter {
         }
 
         final Match currentMatch = (Match) getItem(position);
-        viewHolder.textNumberMatch.setText(String.valueOf(currentMatch.getNumberMatch()));
         viewHolder.textNameTeam1.setText(currentMatch.getNameTeam1());
         viewHolder.textNameTeam2.setText(currentMatch.getNameTeam2());
-        viewHolder.editGoalTeam1.setText(String.valueOf(currentMatch.getGoalTeam1()));
-        viewHolder.editGoalTeam2.setText(String.valueOf(currentMatch.getGoalTeam2()));
+        viewHolder.editGoalTeam1.setText(currentMatch.getGoalTeam1());
+        viewHolder.editGoalTeam2.setText(currentMatch.getGoalTeam2());
+        viewHolder.textNumberMatch.setText(String.valueOf(currentMatch.getNumberMatch()));
         viewHolder.btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
