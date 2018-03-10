@@ -22,6 +22,7 @@ public class AddTeamsActivity extends AppCompatActivity
 
     final String INVALID_INPUT = "Invalid input.";
     final String NO_LEAGUE = "No league.";
+    final String LEAGUE_CREATE = "League created.";
     Button btnAdd;
     EditText editTeams;
     DBManager db;
@@ -125,6 +126,8 @@ public class AddTeamsActivity extends AppCompatActivity
             numberMatches++;
             db.addMatch(matchesList.get(i));
         }
+
+        Toast.makeText(this, LEAGUE_CREATE, Toast.LENGTH_LONG).show();
 
         Intent main = new Intent(this, MainActivity.class);
         startActivity(main);

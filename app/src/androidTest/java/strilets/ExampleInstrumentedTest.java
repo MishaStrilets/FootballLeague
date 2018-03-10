@@ -1,4 +1,4 @@
-package strilets.footballleague;
+package strilets;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("strilets.footballleague", appContext.getPackageName());
+        assertEquals("strilets", appContext.getPackageName());
     }
 }

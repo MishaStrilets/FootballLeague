@@ -17,7 +17,7 @@ public class MatchAdapter extends BaseAdapter {
     private Context context;
     private List<Match> matchesList;
     DBManager db;
-    final String MATCH_SAVE = "Result match save.";
+    final String MATCH_SAVE = "Result match saved.";
     final String INVALID_INPUT = "Invalid input.";
 
     public MatchAdapter(Context context, List<Match> matchesList) {
