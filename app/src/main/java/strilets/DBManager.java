@@ -15,7 +15,7 @@ public class DBManager extends SQLiteOpenHelper {
     public static final String DB_NAME = "football_league";
     public static final String TABLE_MATCHES = "matches";
 
-    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_NAME_TEAM1 = "nameTeam1";
     public static final String COLUMN_NAME_TEAM2 = "nameTeam2";
     public static final String COLUMN_GOAL_TEAM1 = "goalTeam1";
