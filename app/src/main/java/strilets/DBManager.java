@@ -28,7 +28,7 @@ public class DBManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_MATCHES + "( "
+        db.execSQL("create table if not exists " + TABLE_MATCHES + "( "
                 + COLUMN_ID + " integer primary key, "
                 + COLUMN_NAME_TEAM1 + " text, "
                 + COLUMN_NAME_TEAM2 + " text,"
@@ -58,7 +58,6 @@ public class DBManager extends SQLiteOpenHelper {
     public void deleteMatches() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("drop table if exists " + TABLE_MATCHES);
-        onCreate(db);
         db.close();
     }
 
@@ -97,6 +96,7 @@ public class DBManager extends SQLiteOpenHelper {
 
     public boolean checkMatches() {
         SQLiteDatabase db = this.getWritableDatabase();
+        onCreate(db);
 
         String selectQuery = "SELECT  * FROM " + TABLE_MATCHES;
         Cursor cursor = db.rawQuery(selectQuery, null);

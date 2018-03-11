@@ -1,6 +1,7 @@
 package strilets;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -44,10 +45,11 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         db = new DBManager(this);
+
         listTable  = (ListView) findViewById(R.id.listTable);
 
         if(db.checkMatches())
-            Toast.makeText(this, "No league.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, NO_LEAGUE, Toast.LENGTH_LONG).show();
         else
             showTable();
     }
@@ -117,7 +119,7 @@ public class MainActivity extends AppCompatActivity
             indexTeam1 = nameTeam.indexOf(matchesList.get(i).getNameTeam1());
             indexTeam2 = nameTeam.indexOf(matchesList.get(i).getNameTeam2());
 
-            if (matchesList.get(i).getGoalTeam1().matches("0|[1-9]+") && matchesList.get(i).getGoalTeam2().matches("0|[1-9]+")) {
+            if (matchesList.get(i).getGoalTeam1().matches("[1-9]?[0-9]") && matchesList.get(i).getGoalTeam2().matches("[1-9]?[0-9]")) {
 
                 if (Integer.valueOf(matchesList.get(i).getGoalTeam1()) > Integer.valueOf(matchesList.get(i).getGoalTeam2()))
                     table.get(indexTeam1).setPoints(table.get(indexTeam1).getPoints() + 3);
